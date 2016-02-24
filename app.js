@@ -3,7 +3,7 @@ var todos = []
 
 
 
-
+// CANT FIGURE OUT HOW TO INCLUDE TEMPLATES
 var templates = {
   todoItem: [
     '<div class="todoItem">',
@@ -17,37 +17,62 @@ function addTodo(newTodo) {
   todos.push(newTodo)
 }
 
+function addTodoToDom(todoData, templateStr, $target) {
+  var tmpl = _.template(templateStr);
+  $target.append(tmpl(todoData));
+}
+
+function addAllTodos(arr) {
+  _.each(getTodos(), function (el, idx) {
+    el.idx = idx;
+    addTodoToDom(el,templates.todo, $(".all"))
+  });
+}
+
 function getToDoFromDom () {
   var content = $('input[name="todoInput"]').val();
   return {
     content: content,
+    completed: false
   };
 }
 
-function addTodoItem (el) {
-  el.preventDefault();
+
+$('#todoInput').on("keypress", function(el) {
+
+  if (el.keyCode === 13) {
+      el.preventDefault();
   var text = $('#todoInput').val();
-  $('.todoAdded').append("<div><input type='checkbox' class='done'/>" + text + "</div>");
-  $('#todoInput').val('');
+  $('.todoAdded').append("<div class='active'><input type='checkbox' class='done'/>" + text + "</div>");
   var newTodo = getToDoFromDom();
   addTodo(newTodo);
   console.log(todos)
-};
-
-function finishItem () {
-  if ($(this).parent().css('textDecoration') == 'line-through') {
-    $(this).parent().css('textDecoration', 'none')
-  }
-  else {
-  $(this).parent().css('textDecoration', 'line-through');
-  $(this).parent().css('fontColor', 'lightgray')
-
+  $('#todoInput').val('');
 }
-};
+});
 
-$(function() {
-  $('#todoInput').on("change", addTodoItem);
-  $('body').on("click", ".done", finishItem);
+
+
+
+
+// *******************TABS
+
+
+
+
+  $('body').on("click", ".done", function (el) {
+    if ($(this).parent().css('textDecoration') == 'line-through') {
+      $(this).parent().removeClass("completed")
+      $(this).parent().addClass("active")
+      $(this).parent().css('textDecoration', 'none')
+      $(this).parent().css('color', 'black')
+    }
+    else {
+    $(this).parent().removeClass("active")
+    $(this).parent().addClass("completed")
+    $(this).parent().css('textDecoration', 'line-through');
+    $(this).parent().css('color', 'lightgray')
+    }
 });
 
 $(".tabs").on("click", function(event) {

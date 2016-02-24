@@ -16,11 +16,11 @@
     font-size: 4em; }
 
 .container {
-  width: 60%;
+  width: 50%;
   margin: 0 auto; }
   .container .tabNav div {
     display: inline-block;
-    width: 33%; }
+    width: 32%; }
   .container nav {
     width: 32%;
     display: inline-block; }
