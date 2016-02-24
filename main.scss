@@ -1,0 +1,38 @@
+*{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Helvetica;
+  section {
+    display: none;
+  }
+  .show {
+    display: block;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    outline: none;
+  }
+  h1 {
+    text-align: center;
+    font-weight: 100;
+    font-size: 4em;
+  }
+}
+.container {
+  width: 60%;
+  margin: 0 auto;
+  .tabNav div {
+    display: inline-block;
+    width: 33%
+  }
+  nav{
+    width: 32%;
+    display: inline-block;
+    li {
+    display: inline-block;
+    text-decoration:none;
+    }
+  }
+}
