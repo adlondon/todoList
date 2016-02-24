@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  addAllTodos();
+  addAllTodos(todos,$('.all'));
 })
 
 
@@ -41,12 +41,27 @@ function addTodoToDom(todoData, templateStr, $target) {
   $target.append(tmpl(todoData));
 }
 
-function addAllTodos() {
-  _.each(getTodos(), function(el,index) {
+function addAllTodos(arr,$target) {
+  $target.html("");
+  _.each(arr, function(el,index) {
     el.idx = index;
-    addTodoToDom(el,templates.todoPost, $(".all"))
+    addTodoToDom(el,templates.todoPost, $target);
   });
 }
+
+// function addCompletedTodos() {
+//   _.each(getTodos(), function (el,index) {
+//     el.idx = index;
+//     addTodoToDom(el,templates.todoPost, $(".completed"))
+//   })
+// }
+//
+// function addActiveTodos() {
+//   _.each(getTodos(), function (el,index) {
+//     el.idx = index;
+//     addTodoToDom(el,templates.todoPost, $(".active"))
+//   })
+// }
 
 function getToDoFromDom(text) {
   return {
@@ -64,7 +79,7 @@ $('form').on("submit", function(el) {
   // $('.todoAdded').append("<div class='active' data-todoItem ='<%= idx %>'><input type='checkbox' class='done'/>" + text + "</div>");
   addTodo(newTodo);
   $('#todoInput').val('');
-  addAllTodos();
+  addAllTodos(todos,$('.all'));
 });
 
 
@@ -73,28 +88,50 @@ $('form').on("submit", function(el) {
 
 // *******************TABS
 
+function toggleComplete(idx) {
+  getTodos()[idx].completed = !getTodos()[idx].completed;
+}
 
-todos.filter(function(el) {
-  return el.completed === false
-});
 
-  $('body').on("click", ".done", function (el) {
+
+  $('body').on("click", ".done", function (el,idx) {
     if ($(this).parent().css('textDecoration') == 'line-through') {
       $(this).parent().removeClass("completed")
       $(this).parent().addClass("active")
       $(this).parent().css('textDecoration', 'none')
       $(this).parent().css('color', 'black')
+      toggleComplete($(this).parent().data("todoitem"))
+
     }
     else {
     $(this).parent().removeClass("active")
     $(this).parent().addClass("completed")
     $(this).parent().css('textDecoration', 'line-through');
     $(this).parent().css('color', 'lightgray')
+    toggleComplete($(this).parent().data("todoitem"))
     }
 });
 
+
+var result = []
 $(".tabs").on("click", function(event) {
-  event.preventDefault();
+  event.preventDefault()
+  console.log($(this).text());
+  if ($(this).text() === "Completed") {
+    result = todos.filter(function(el,idx) {
+      todos[idx].idx = idx;
+      return el.completed === true
+    });
+    console.log(result);
+    addAllTodos(result,$('.completed'));
+  }
+  else if ($(this).text() === "Active") {
+    result = todos.filter(function(el,idx) {
+      todos[idx].idx = idx;
+      return el.completed === false
+    });
+    addAllTodos(result,$('.active'));
+  }
   $("section").removeClass("show");
   $(this).addClass("show");
   var selector = "." + $(this).attr("rel");

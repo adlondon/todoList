@@ -28,3 +28,11 @@
     .container nav li {
       display: inline-block;
       text-decoration: none; }
+
+.completed {
+  text-decoration: line-through;
+  color: lightgray; }
+
+.active {
+  text-decoration: none;
+  color: black; }
