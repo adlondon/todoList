@@ -98,7 +98,7 @@ function toggleComplete(idx) {
     if ($(this).parent().css('textDecoration') == 'line-through') {
       $(this).parent().removeClass("completed")
       $(this).parent().addClass("active")
-      $(this).parent().css('textDecoration', 'none')
+      $(this).parent().css('textDecoration', 'initial')
       $(this).parent().css('color', 'black')
       toggleComplete($(this).parent().data("todoitem"))
 
@@ -111,6 +111,20 @@ function toggleComplete(idx) {
     toggleComplete($(this).parent().data("todoitem"))
     }
 });
+
+
+//
+// var result = []
+// $(".active").on("click", function(event) {
+//
+//   $("section").removeClass("show");
+//   $(this).addClass("show");
+//   var selector = "." + $(this).attr("rel");
+//   $(selector).addClass("show");
+// });
+//
+//
+//
 
 
 var result = []

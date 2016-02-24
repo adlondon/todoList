@@ -12,7 +12,7 @@ templates.todoPost = [
   "<% } else {%>",
   "<div class='active'",
   "<% } %>",
-  "data-todoitem ='<%= idx %>'><input type='checkbox' class='done'/>",
+  "data-todoitem ='<%= idx %>'><i class='fa fa-circle-thin done'></i>",
   "<%= content %>",
   "</div>"
 ].join("")
