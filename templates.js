@@ -1,3 +1,4 @@
+
 var templates = {};
 
 // templates.todoPost = [
@@ -14,6 +15,7 @@ templates.todoPost = [
   "<% } %>",
   "data-todoitem ='<%= idx %>'><i class='fa fa-circle-thin done'></i>",
   "<%= content %>",
+  "<i class='fa fa-times delete'></i>",
   "</div>"
 ].join("")
 
