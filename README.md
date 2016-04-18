@@ -1,8 +1,10 @@
 # todoList
-A CRUD To-Do list application built with jQuery
+A To-Do list application using CRUD functionality and built with jQuery
 
 **Future updates to be completed**
 * Style list cards and text to more closely resemble wireframe
+* Allow users to edit items
+* Save items to local storage
 
 ----------------------------------
 
