@@ -8,11 +8,11 @@ A To-Do list application using CRUD functionality and built with jQuery
 
 ----------------------------------
 
-This project was created to fulfill an assignment for The Iron Yard Charleston's Front-End Engineering course. The original assignment text is below:
+This repository was created in order to fulfill an assignment for the Front-End Engineering course at [The Iron Yard](https://www.theironyard.com/locations/charleston.html "The Iron Yard"). The original assignment text is below:
 
 ----------------------------------
 
-*Week 4, Day 2*
+**Week 4, Day 2**
 
 ##jQuery Todo List
 You will be creating a 1:1 rendition of the provided todo list graphic.
